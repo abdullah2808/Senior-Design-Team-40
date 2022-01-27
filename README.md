@@ -10,5 +10,6 @@
   - Started on integration of subsystems
   - Constructed Github for Google Drive files and uploaded them
   - Started on progress report presentation
+  - Refined GPS transmission and receival through modification of variable settings, such as baud rate.
 
  
