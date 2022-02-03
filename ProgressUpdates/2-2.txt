@@ -1,2 +1,8 @@
 Progress Update Wed Feb 2:
 
+Started/Working on integration of communication subsystem with application subsystem
+2nd and 3rd motor controller and power supplies have been constructed - awaiting microcontroller to power the motors
+Working on signal strength indicator for antenna subsystem - lacks stability currently 
+Working on calculating error rate for triangulated location - requires antenna subsystem operating optimally so measurements can be taken
+
+
