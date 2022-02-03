@@ -4,12 +4,6 @@
 
 **Link to GPS and LoRa Code:    https://github.com/MujtabaSaeedSD/SeniorDesign**
 
-**Progress Update Wed Jan 26:**
-
-  - Calibrated antenna modules and created line of best fit for each antenna module, by measuring signal strength at different distances
-  - Started on integration of subsystems
-  - Constructed Github for Google Drive files and uploaded them
-  - Started on progress report presentation
-  - Refined GPS transmission and receival through modification of variable settings, such as baud rate.
+**Link to Google Drive: https://drive.google.com/drive/folders/1-TyT4zWLilkUXr1XGLMUx_R6cqbETWIT?usp=sharing **
 
  
