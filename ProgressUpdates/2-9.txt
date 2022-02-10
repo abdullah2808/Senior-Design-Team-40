@@ -1,0 +1,7 @@
+Progress Update Wed Feb 9:
+
+- Updated Documentation for running application and user interface
+- Working on integration of application/gps/communication subsystem
+- Installed and verified application on other devices
+- Testing antenna 
+- Working on constructing second and third power supply
