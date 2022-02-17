@@ -1,1 +1,4 @@
+Progress Update Wed Feb 16:
+
+Integrated Microcontroller with application and tested by writing to serial port and receiving back from serial port
 
