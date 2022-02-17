@@ -2,3 +2,4 @@ Progress Update Wed Feb 16:
 
 Integrated Microcontroller with application and tested by writing to serial port and receiving back from serial port
 
+Signal strength is now restored with transceivers. Need to do some testing to get the limits of collecting data. Next step woupld be getting integrated with MCU and power supply.
