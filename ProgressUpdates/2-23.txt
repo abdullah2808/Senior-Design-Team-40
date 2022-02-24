@@ -1,0 +1,4 @@
+Progress Update Wed Feb 23:
+
+- Testing communication with application subsystem and received data on front end GUI
+- Currently working on parsing of data from communication/gps subsystem into application subsystem
