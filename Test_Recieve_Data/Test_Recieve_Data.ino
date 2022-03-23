@@ -1,47 +1,3 @@
-//#include <ELECHOUSE_CC1101_SRC_DRV.h>
-//
-//void setup() {
-//
-//  Serial.begin(9600);
-//
-//  if (ELECHOUSE_cc1101.getCC1101()) {       // Spi connection.
-//    Serial.println("Connection OK");
-//  } else {
-//    Serial.println("Connection Error");
-//  }
-//
-//  ELECHOUSE_cc1101.Init();              // initialize the cc1101
-//  ELECHOUSE_cc1101.setCCMode(1);       // set config for internal transmission mode.
-//  ELECHOUSE_cc1101.setModulation(0);  // set modulation mode. 0 = 2-FSK
-//  ELECHOUSE_cc1101.setMHZ(464);      // set basic frequency(default = 433.92): 300-348 MHZ, 387-464MHZ and 779-928MHZ.
-//  ELECHOUSE_cc1101.setSyncMode(2);  // Combined sync-word qualifier mode. 2 = 16/16 sync word bits detected. 
-//  ELECHOUSE_cc1101.setCrc(1);      // 1 = CRC calculation in TX and CRC check in RX enabled.
-//
-//  Serial.println("Rx Mode");
-//}
-//byte buffer[61] = {0};
-//
-//void loop() {
-//
-//  if (ELECHOUSE_cc1101.CheckRxFifo(100)) {
-//
-//    if (ELECHOUSE_cc1101.CheckCRC()) {   //CRC Check. If "setCrc(false)" crc returns always OK!
-//      Serial.print("Rssi: ");
-//      Serial.println(ELECHOUSE_cc1101.getRssi());
-//      Serial.print("LQI: ");
-//      Serial.println(ELECHOUSE_cc1101.getLqi());
-//
-//      int len = ELECHOUSE_cc1101.ReceiveData(buffer);
-//      buffer[len] = '\0';
-//      Serial.println((char *) buffer);
-//      for (int i = 0; i < len; i++) {
-//        Serial.print(buffer[i]);
-//        Serial.print(",");
-//      }
-//      Serial.println();
-//    }
-//  }
-//}
 
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
 
@@ -87,35 +43,44 @@ void setup(){
 byte buffer[61] = {0};
 
 void loop(){
-
+  int delayperiod = 1000; //1 second
   //Checks whether something has been received.
   //When something is received we give some time to receive the message in full.(time in millis)
-  if (ELECHOUSE_cc1101.CheckRxFifo(100)){
+  
+  static int signal_strength = 0;
+  static int max_strength = -1000; 
+  static int angle = 0;
+  static int max_angle = 0;
+  static int counter = 0;
 
+  if (ELECHOUSE_cc1101.CheckRxFifo(100)){
   //CRC Check. If "setCrc(false)" crc returns always OK!
   if (ELECHOUSE_cc1101.CheckCRC()){ 
-
    //Rssi Level in dBm
-    Serial.print("Rssi: ");
-    Serial.println(ELECHOUSE_cc1101.getRssi());
-
-   //Link Quality Indicator
-    Serial.print("LQI: ");
-    Serial.println(ELECHOUSE_cc1101.getLqi());
-
-   //Get received Data and calculate length
-    int len = ELECHOUSE_cc1101.ReceiveData(buffer);
-    buffer[len] = '\0';
-
-   //Print received in char format.
-    Serial.println((char *) buffer);
-
-   //Print received in bytes format.
-    for (int i = 0; i<len; i++){
-    Serial.print(buffer[i]);
-    Serial.print(",");
+    signal_strength = -1*ELECHOUSE_cc1101.getRssi();
+  }
+  }
+ 
+  
+  Serial.print("Signal Strength: ");
+  Serial.println(signal_strength);
+  Serial.print("Angle: ");
+  Serial.println(angle);
+  delay(delayperiod);
+  if(signal_strength >= max_strength)
+  {
+    max_strength = signal_strength;
+    max_angle = angle;
     }
-    Serial.println();
-  }
-  }
+   counter += 1;
+   angle += 4;
+  if(counter >= 45)
+  {
+    Serial.print("Max Signal Strength: ");
+    Serial.println(max_strength);
+    Serial.print("Max Angle: ");
+    Serial.println(max_angle); 
+    delay(delayperiod*100);   
+    exit(0);
+    }
 }
